@@ -1,0 +1,13 @@
+.Buttom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #61dafb;
+    background-color: aqua;
+    stop-color: #61dafb;
+    stroke-width: 20px;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+  }
+  

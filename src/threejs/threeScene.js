@@ -44,6 +44,8 @@ class ThreeScene extends Component{
 
     }
 
+
+    /*
     // This is a function to display in fullscreen
     handleFullscreen = () => {
     
@@ -74,7 +76,7 @@ class ThreeScene extends Component{
                 document.webkitExitFullscreen()
             }
         }
-    }
+    }*/
 
     animation = ()=>{
         
@@ -96,7 +98,11 @@ class ThreeScene extends Component{
         }
        
         //scene
-        this.scene = new THREE.Scene()
+        this.scene = new THREE.Scene();
+         // fog
+
+
+        this.scene.fog = new THREE.Fog( 0x363d3d, -1, 3000 );
 
         //renderer
         this.renderer = new THREE.WebGLRenderer({
@@ -138,6 +144,8 @@ class ThreeScene extends Component{
         ground.rotation.x = Math.PI * - 0.5;
         this.scene.add( ground );
 
+        
+
         const textureLoader = new THREE.TextureLoader();
         textureLoader.load( './static/textures/FloorsCheckerboard_S_Diffuse.jpg', function ( map ) {
 
@@ -149,6 +157,9 @@ class ThreeScene extends Component{
             groundMaterial.needsUpdate = true;
 
         } );
+       
+
+
 
         // water
 
@@ -170,6 +181,9 @@ class ThreeScene extends Component{
         //Add Ambient light
         const light = new THREE.AmbientLight(0xcccccc,0.4)
         this.scene.add(light)
+
+        const testLight = new THREE.AmbientLight(0xffc0cb, 0.7)
+        this.scene.add(testLight)
 
         // Add directional Light
         const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.6 );
