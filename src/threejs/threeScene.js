@@ -1,7 +1,10 @@
 import React,{Component} from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import {Water} from "./libs/Water2"
+import { Water } from "./libs/Water2"
+
+// fbx loader
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader"
 
 // import vertex from "./shaders/vertexShader";
 // import fragment from "./shaders/fragmentShader";
@@ -102,13 +105,14 @@ class ThreeScene extends Component{
          // fog
 
 
-        this.scene.fog = new THREE.Fog( 0x363d3d, -1, 3000 );
+        
 
         //renderer
         this.renderer = new THREE.WebGLRenderer({
             antialias:true
         })
         this.renderer.setSize(this.size.width,this.size.height)
+        this.renderer.setClearColor(0x61dafb,1);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
         this.renderer.toneMapping = THREE.NoToneMapping;
 
@@ -125,6 +129,79 @@ class ThreeScene extends Component{
         this.controls = new OrbitControls(this.camera, this.canvas)
         this.controls.enableDamping = true
 
+        // add fog
+        const fog = this.scene.fog = new THREE.Fog( 0x61dafb, 0, 50 )
+        console.log(fog)
+
+
+        // add partical
+
+        var particularGruop = new THREE.Object3D();
+        function generateParticle(num, amp = 2) {
+            var gmaterial = new THREE.MeshPhysicalMaterial({color:0xFFFFFF, side:THREE.DoubleSide});
+          
+            var gparticular = new THREE.CircleGeometry(0.2,5);
+          
+            for (var i = 1; i < num; i++) {
+              var pscale = 0.001+Math.abs(Math.random(0.03));
+              var particular = new THREE.Mesh(gparticular, gmaterial);
+              particular.position.set(Math.random(amp),Math.random(amp),Math.random(amp));
+              particular.rotation.set(Math.random(),Math.random(),Math.random());
+              particular.scale.set(pscale,pscale,pscale);
+              particular.speedValue = Math.random(1);
+               
+
+
+          
+              particularGruop.add(particular);
+            }
+          }
+          this.scene.add(particularGruop);
+          
+
+
+
+
+
+        // add fbx
+        const Loader = new FBXLoader()
+        const loadPath = require('../models/testMonkey.fbx'); //D:\CodingWorks\React-threejs-template\public\static\models
+        Loader.load(
+            loadPath,
+            (object) => {
+                // object.traverse(function (child) {
+                //     if ((child as THREE.Mesh).isMesh) {
+                //         // (child as THREE.Mesh).material = material
+                //         if ((child as THREE.Mesh).material) {
+                //             ((child as THREE.Mesh).material as THREE.MeshBasicMaterial).transparent = false
+                //         }
+                //     }
+                // })
+                // object.scale.set(.01, .01, .01)
+
+
+
+                this.scene.add(object)
+                
+            },
+            (xhr) => {
+                console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+            },
+            (error) => {
+                console.log(error)
+            }
+
+
+
+
+
+
+        )
+        
+        
+        
+        
+        
         //Add cube
         // var geometry = new THREE.PlaneGeometry(1,1)
         // var material = new THREE.MeshBasicMaterial(
@@ -189,6 +266,24 @@ class ThreeScene extends Component{
         const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.6 );
 		directionalLight.position.set( - 1, 1, 1 );
         this.scene.add( directionalLight );    
+
+
+        // add ray caster
+        var rayCaster = new THREE.Raycaster();
+        var mouse = new THREE.Vector2(), INTERSECTED;
+        var intersected;
+
+        function onMouseMove(event){
+            event.preventDefault();
+            mouse.x
+
+
+
+        }
+
+
+
+
 
         this.renderer.render(this.scene,this.camera)
 

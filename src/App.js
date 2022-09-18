@@ -1,4 +1,5 @@
-import ThreeScene from "./threejs/threeScene";
+import NewThreeScene from "./threejs/newThreeScene";
+//import ThreeScene from "./threejs/threeScene";
 import './threejs/canvasStyling.css';
 import './Components/Button.css'
 
@@ -6,7 +7,7 @@ function App() {
   return (
     //<div className = "logo"/>
     <div className = "Container">
-      <ThreeScene className = "webgl"/>
+      <NewThreeScene className = "testwebgl"/>
       <div className = "Buttom"></div>
       <h1 > Hellow World</h1>
       
