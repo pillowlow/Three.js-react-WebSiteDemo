@@ -6,6 +6,15 @@
     
 }
 
+.testwebgl{
+    position:fixed;
+    top:0;
+    left:0;
+    outline: white;
+    
+}
+
+
 html,body{
     overflow: hidden;
 }

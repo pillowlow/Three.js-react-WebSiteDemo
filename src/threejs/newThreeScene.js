@@ -24,7 +24,7 @@ class newThreeScene extends Component{
 
         );
         this.BloomPass.threshold = 0;
-        this.BloomPass.strength = 3;
+        this.BloomPass.strength = 1;
         this.BloomPass.radius = 0;
 
         this.BloomComposer = new EffectComposer(this.renderer);
@@ -50,10 +50,15 @@ class newThreeScene extends Component{
 
         //update the renderer
         this.renderer.setSize(window.innerWidth,window.innerHeight)
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+        this.renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1)
         this.renderer.render(this.scene,this.camera)
+
         
         // this.canvas = this.renderer.domElement
+        // postProcessing
+        this.BloomComposer.setSize(window.innerWidth,window.innerHeight)
+        
+
 
     }
 
@@ -63,13 +68,23 @@ class newThreeScene extends Component{
         this.controls.update()
 
         // Render
-        this.renderer.render(this.scene, this.camera)
+        //this.renderer.render(this.scene, this.camera)
         
 
         requestAnimationFrame(this.animation)
         //this.camera.layers.set(1);
        // console.log(this.BloomComposer)
-       //this.BloomComposer.render();
+       this.BloomComposer.render();
+
+       const testCloud = this.scene.getObjectByName("testCloud")
+
+       if(testCloud){
+        console.log(testCloud);
+        testCloud.rotation.y += 0.00314;
+       }
+      
+       
+       
     }
 
     resetAllMat = ()=> {
@@ -79,11 +94,38 @@ class newThreeScene extends Component{
         const monkey = this.scene.getObjectByName("monkey")
         if(monkey){
             monkey.children[0].material.color.set( 0xffffff )
+            monkey.children[0].material.emissive.set( 0x000000 )
         }
         
 
         const dounut = this.scene.getObjectByName("dounut")
-        dounut.children[0].material.color.set( 0xffffff )
+        if(dounut){
+            dounut.children[0].material.color.set( 0xffffff )
+            dounut.children[0].material.emissive.set( 0x000000 )
+        }
+        
+        const testCloud = this.scene.getObjectByName("testCloud")
+        if(testCloud){
+            var temp = testCloud.children;
+            temp.forEach(element => {
+                if(element.name == "Sphere"){
+                    element.material.color.set( 0xffffff )
+                    element.material.emissive.set( 0x000000 )
+                    
+                }
+                else if(element.name == "Sphere001"){
+                    element.material.color.set( 0xfffb00 )
+                    element.material.emissive.set( 0x000000 )
+                    
+                }
+                else{
+                    element.material.color.set( 0x00fffb )
+                    element.material.emissive.set( 0x000000 )
+                   
+                }
+            });
+            
+         }
 
     }
     
@@ -122,6 +164,7 @@ class newThreeScene extends Component{
                 
                 intersects[ i ].object.material.color.set( 0xff0000 );
                 intersects[ i ].object.material.emissive.set(0xff0000);
+                break;
                 /*
                     An intersection has the following properties :
                         - object : intersected object (THREE.Mesh)
@@ -163,9 +206,9 @@ class newThreeScene extends Component{
             antialias:true
         })
 
-        //this.renderer.autoClear = false;
+        this.renderer.autoClear = false;
         this.renderer.setSize(this.size.width,this.size.height)
-        this.renderer.setClearColor(0x61dafb,1);
+        this.renderer.setClearColor(0x002020,1);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
         this.renderer.toneMapping = THREE.NoToneMapping;
 
@@ -175,7 +218,7 @@ class newThreeScene extends Component{
         
         //camera
         this.camera = new THREE.PerspectiveCamera(45,this.size.width/this.size.height,0.1,100)
-        this.camera.position.set( - 15, 7, 15 )
+        this.camera.position.set( - 5, 5, 5 )
         this.camera.lookAt(this.scene.position)
         this.scene.add(this.camera)
 
@@ -197,7 +240,8 @@ class newThreeScene extends Component{
 
 
         // add fog
-        const fog = this.scene.fog = new THREE.Fog( 0x61dafb, 0, 30 )
+        const fog = this.scene.fog = new THREE.Fog( 0x002020, 0, 30 )
+        
         
 
         
@@ -210,8 +254,10 @@ class newThreeScene extends Component{
         // add fbx
         const Loader = new FBXLoader()
         const Loader2 = new FBXLoader()
+        const Loader3 = new FBXLoader()
         const loadPath = require('../models/testMonkey.fbx'); 
         const loadPath2 = require('../models/dounutTest.fbx');
+        const loadPath3 = require('../models/testBackGroundParts.fbx');
         Loader.load(
             loadPath,
             (object) => {
@@ -229,7 +275,7 @@ class newThreeScene extends Component{
                 object.position.set(2,2,2)
                 object.name = "monkey"
                 //object.layers.set(1);
-                console.log(object.name)
+                //console.log(object.name)
                 
             },
             /*
@@ -246,21 +292,26 @@ class newThreeScene extends Component{
                 this.scene.add(object)
                 object.name = "dounut"
                 object.layers.set(1);
-                console.log(object.name)
+                
+            }
+            
+        )
+        Loader3.load(
+            loadPath3,
+            (object) =>{
+                this.scene.add(object)
+                object.name = "testCloud"
+                
             }
             
         )
         
-        //Add Ambient light
-        const light = new THREE.AmbientLight(0xcccccc,0.4)
-        this.scene.add(light)
+        
 
-        const testLight = new THREE.AmbientLight(0xffc0cb, 0.7)
-        this.scene.add(testLight)
+        
 
         // Add directional Light
-        const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.6 );
-		directionalLight.position.set( - 1, 1, 1 );
+        const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5)
         this.scene.add( directionalLight );    
 
 
@@ -272,7 +323,7 @@ class newThreeScene extends Component{
         //Add event listener for resizing
         window.addEventListener('resize',this.handleWindowResize,false)
 
-        window.addEventListener('resize',()=>{this.BloomComposer.setSize(window.innerWidth,window.innerHeight)},false)
+        
         
         
         window.addEventListener('click',this.rayCast,false)
