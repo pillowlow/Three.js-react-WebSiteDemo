@@ -31,10 +31,10 @@ class newThreeScene extends Component{
         this.BloomComposer.setSize(window.innerWidth,window.innerHeight);
         this.BloomComposer.renderToScreen = true;
         this.BloomComposer.addPass(this.RenderScene);
-        console.log(this.RenderScene);
+        //console.log(this.RenderScene);
         this.BloomComposer.addPass(this.BloomPass);
-        console.log(this.BloomPass);
-        console.log(this.BloomComposer);
+        //console.log(this.BloomPass);
+        //console.log(this.BloomComposer);
 
         
     }
@@ -242,7 +242,7 @@ class newThreeScene extends Component{
 
 
         // add fog
-        const fog = this.scene.fog = new THREE.Fog( 0x000000, 0, 30 )
+        const fog = this.scene.fog = new THREE.Fog( 0x000000, 0, 25 )
         
         /*
         // galaxy geometry
@@ -260,7 +260,42 @@ class newThreeScene extends Component{
         //starMesh.layers.set(1);
         this.scene.add(starMesh);
         */
-          
+        
+        const GalaxyTexLoader = new THREE.TextureLoader();
+        const GalaxyTexPath = "./galaxy1.png" ;
+       
+        GalaxyTexLoader.load(
+            './static/textures/galaxy1.png',
+            (tex) =>{
+                
+                const color = new THREE.Color("rbg(255,255,255)")
+                const starGeometry = new THREE.SphereGeometry(10, 64, 64);
+                const starMaterial = new THREE.MeshStandardMaterial({
+                    map: tex,
+                    side: THREE.BackSide,
+                    transparent: true,
+                    emissive: color,
+                    
+                    emissiveIntensity: 10,
+                    
+                    
+                   
+                    
+                });
+                
+                const starMesh = new THREE.Mesh(starGeometry, starMaterial);
+                //starMesh.layers.set(1);
+                
+                this.scene.add(starMesh);
+            },
+            undefined,
+            function (err){
+                console.log(err,"wrong");
+            }
+
+        )
+        
+
         
 
 
@@ -311,18 +346,26 @@ class newThreeScene extends Component{
                 this.scene.add(object)
                 object.name = "testCloud"
                 
+                
             }
             
         )
         Loader4.load(
             loadPath4,
             (object) =>{
+                
                 this.scene.add(object)
                 object.name = "SpaceStation"
                 
+                
+            },
+            undefined,
+            function (err){
+                console.log(err,"wrong");
             }
-            
         )
+        
+        
         
         
 
