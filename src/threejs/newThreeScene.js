@@ -79,7 +79,7 @@ class newThreeScene extends Component{
        const testCloud = this.scene.getObjectByName("testCloud")
 
        if(testCloud){
-        console.log(testCloud);
+        
         testCloud.rotation.y += 0.00314;
        }
       
@@ -153,18 +153,20 @@ class newThreeScene extends Component{
 
         // reset color
         this.resetAllMat();
-
-        if(intersects.length <1){
+        // set color
+        if(intersects.length === 0){
             
             //console.log("nothing");
         }
         else{
             for ( var i = 0; i < intersects.length; i++ ) {
                 
+                if(intersects[ i ].object.material !== undefined){
+                    intersects[ i ].object.material.color.set( 0xff0000 );
+                    intersects[ i ].object.material.emissive.set(0xff0000);
+                    break;
+                }
                 
-                intersects[ i ].object.material.color.set( 0xff0000 );
-                intersects[ i ].object.material.emissive.set(0xff0000);
-                break;
                 /*
                     An intersection has the following properties :
                         - object : intersected object (THREE.Mesh)
@@ -208,7 +210,7 @@ class newThreeScene extends Component{
 
         this.renderer.autoClear = false;
         this.renderer.setSize(this.size.width,this.size.height)
-        this.renderer.setClearColor(0x002020,1);
+        this.renderer.setClearColor(0x000000,1);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
         this.renderer.toneMapping = THREE.NoToneMapping;
 
@@ -218,7 +220,7 @@ class newThreeScene extends Component{
         
         //camera
         this.camera = new THREE.PerspectiveCamera(45,this.size.width/this.size.height,0.1,100)
-        this.camera.position.set( - 5, 5, 5 )
+        this.camera.position.set( - 7, 10, 7 )
         this.camera.lookAt(this.scene.position)
         this.scene.add(this.camera)
 
@@ -240,14 +242,26 @@ class newThreeScene extends Component{
 
 
         // add fog
-        const fog = this.scene.fog = new THREE.Fog( 0x002020, 0, 30 )
+        const fog = this.scene.fog = new THREE.Fog( 0x000000, 0, 30 )
         
-        
+        /*
+        // galaxy geometry
+        const starGeometry = new THREE.SphereGeometry(80, 64, 64);
+        const texLoader = new THREE.TextureLoader();
+        // galaxy material
+        const starMaterial = new THREE.MeshBasicMaterial({
+            map: new THREE.TextureLoader(".../public/static/texture/galaxy1.png"),
+            side: THREE.BackSide,
+            transparent: true,
+        });
 
-        
+        // galaxy mesh
+        const starMesh = new THREE.Mesh(starGeometry, starMaterial);
+        //starMesh.layers.set(1);
+        this.scene.add(starMesh);
+        */
           
-
-
+        
 
 
 
@@ -255,9 +269,13 @@ class newThreeScene extends Component{
         const Loader = new FBXLoader()
         const Loader2 = new FBXLoader()
         const Loader3 = new FBXLoader()
+        const Loader4 = new FBXLoader()
         const loadPath = require('../models/testMonkey.fbx'); 
         const loadPath2 = require('../models/dounutTest.fbx');
         const loadPath3 = require('../models/testBackGroundParts.fbx');
+        const loadPath4 = require('../models/MainSpaceStation.fbx');
+        
+        /*
         Loader.load(
             loadPath,
             (object) => {
@@ -273,7 +291,7 @@ class newThreeScene extends Component{
 
                 this.scene.add(object)
                 object.position.set(2,2,2)
-                object.name = "monkey"
+                
                 //object.layers.set(1);
                 //console.log(object.name)
                 
@@ -284,23 +302,23 @@ class newThreeScene extends Component{
             },
             (error) => {
                 console.log(error)
-            }*/
-        )
-        Loader2.load(
-            loadPath2,
-            (object) =>{
-                this.scene.add(object)
-                object.name = "dounut"
-                object.layers.set(1);
-                
             }
-            
-        )
+        )*/
+        
         Loader3.load(
             loadPath3,
             (object) =>{
                 this.scene.add(object)
                 object.name = "testCloud"
+                
+            }
+            
+        )
+        Loader4.load(
+            loadPath4,
+            (object) =>{
+                this.scene.add(object)
+                object.name = "SpaceStation"
                 
             }
             
@@ -311,8 +329,12 @@ class newThreeScene extends Component{
         
 
         // Add directional Light
-        const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5)
+        const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.3)
         this.scene.add( directionalLight );    
+        
+        const MyambientLight = new THREE.AmbientLight(0xffffff, 0.1)
+        this.scene.add( MyambientLight );    
+        
 
 
 
