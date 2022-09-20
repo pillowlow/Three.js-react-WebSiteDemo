@@ -82,10 +82,19 @@ class newThreeScene extends Component{
         
         testCloud.rotation.y += 0.00314;
        }
-      
+       
+       const galaxy = this.scene.getObjectByName("galaxy")
+       if(galaxy){
+        
+        galaxy.rotation.y += 0.00400;
+       }
+       
+
        
        
     }
+
+
 
     resetAllMat = ()=> {
         // the method is really unsafe, reset by each Object 
@@ -287,6 +296,8 @@ class newThreeScene extends Component{
                 //starMesh.layers.set(1);
                 
                 this.scene.add(starMesh);
+                starMesh.name = "galaxy"
+                
             },
             undefined,
             function (err){
