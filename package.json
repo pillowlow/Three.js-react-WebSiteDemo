@@ -2,10 +2,8 @@
   "name": "eeriee-scene",
   "version": "0.1.0",
   "private": true,
+  "homepage":"https://pillowlow.github.io/Three.js-react-WebSiteDemo/",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^12.1.5",
-    "@testing-library/user-event": "^13.5.0",
     "dat-gui": "^0.5.0",
     "dat.gui": "^0.7.9",
     "react": "^18.0.0",
@@ -20,7 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
