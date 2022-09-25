@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/Three.js-react-WebSiteDemo/static/css/main.4349dfad.css",
-    "main.js": "/Three.js-react-WebSiteDemo/static/js/main.538ba329.js",
+    "main.js": "/Three.js-react-WebSiteDemo/static/js/main.489de25e.js",
     "static/js/787.e75bf1ec.chunk.js": "/Three.js-react-WebSiteDemo/static/js/787.e75bf1ec.chunk.js",
-    "static/media/MainSpaceStation.fbx": "/Three.js-react-WebSiteDemo/static/media/MainSpaceStation.3df0320b2cbd50d7fbb3.fbx",
-    "static/media/testBackGroundParts.fbx": "/Three.js-react-WebSiteDemo/static/media/testBackGroundParts.2e40bd9f456bfd982db5.fbx",
+    "static/media/MainSpaceStation.fbx": "/Three.js-react-WebSiteDemo/static/media/MainSpaceStation.1133f82b1f03abdd1d3a.fbx",
+    "static/media/SpaceShipsClock.fbx": "/Three.js-react-WebSiteDemo/static/media/SpaceShipsClock.d95ed93ae0f0fdff7585.fbx",
+    "static/media/SpaceShipsCuntClock.fbx": "/Three.js-react-WebSiteDemo/static/media/SpaceShipsCuntClock.a5f23a504cdd36ea4b0d.fbx",
     "static/media/testMonkey.fbx": "/Three.js-react-WebSiteDemo/static/media/testMonkey.2eaf1df7ee4f249528f8.fbx",
-    "static/media/dounutTest.fbx": "/Three.js-react-WebSiteDemo/static/media/dounutTest.2b56c674e5f9733c06f1.fbx",
     "index.html": "/Three.js-react-WebSiteDemo/index.html",
     "main.4349dfad.css.map": "/Three.js-react-WebSiteDemo/static/css/main.4349dfad.css.map",
-    "main.538ba329.js.map": "/Three.js-react-WebSiteDemo/static/js/main.538ba329.js.map",
+    "main.489de25e.js.map": "/Three.js-react-WebSiteDemo/static/js/main.489de25e.js.map",
     "787.e75bf1ec.chunk.js.map": "/Three.js-react-WebSiteDemo/static/js/787.e75bf1ec.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4349dfad.css",
-    "static/js/main.538ba329.js"
+    "static/js/main.489de25e.js"
   ]
 }
