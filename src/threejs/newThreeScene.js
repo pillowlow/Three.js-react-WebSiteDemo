@@ -319,10 +319,18 @@ class newThreeScene extends Component{
         const Loader2 = new FBXLoader()
         const Loader3 = new FBXLoader()
         const Loader4 = new FBXLoader()
+        const LoaderConnectMe = new FBXLoader()
+        const LoaderAboutMe = new FBXLoader()
+        const LoaderProject = new FBXLoader()
+        const LoaderProtfolio = new FBXLoader()
         const loadPath = require('../models/testMonkey.fbx'); 
         const loadPath2 = require('../models/SpaceShipsClock.fbx');
         const loadPath3 = require('../models/SpaceShipsCuntClock.fbx');
         const loadPath4 = require('../models/MainSpaceStation.fbx');
+        const loadPathConnectMe = require('../models/ConnectSign.fbx');
+        const loadPathAboutMe = require('../models/AboutMeSign.fbx');
+        const loadPathProject = require('../models/ProjectSign.fbx');
+        const loadPathProtfolio = require('../models/ProtfolioSign.fbx');
         
         /*
         Loader.load(
@@ -382,6 +390,63 @@ class newThreeScene extends Component{
                 
                 this.scene.add(object)
                 object.name = "SpaceStation"
+                
+                
+            },
+            undefined,
+            function (err){
+                console.log(err,"wrong");
+            }
+        )
+        
+        LoaderConnectMe.load(
+            loadPathConnectMe,
+            (object) =>{
+                
+                this.scene.add(object)
+                object.name = "ConnectMeSign"
+                
+                
+            },
+            undefined,
+            function (err){
+                console.log(err,"wrong");
+            }
+        )
+        LoaderAboutMe.load(
+            loadPathAboutMe,
+            (object) =>{
+                
+                this.scene.add(object)
+                object.name = "AboutMeSign"
+                
+                
+            },
+            undefined,
+            function (err){
+                console.log(err,"wrong");
+            }
+        )
+        LoaderProject.load(
+            loadPathProject,
+            (object) =>{
+                
+                this.scene.add(object)
+                object.name = "ProjectSign"
+                
+                
+            },
+            undefined,
+            function (err){
+                console.log(err,"wrong");
+            }
+        )
+        LoaderProtfolio.load(
+            loadPathProtfolio,
+            (object) =>{
+                
+                this.scene.add(object)
+                object.name = "ProtfolioSign"
                 
                 
             },
