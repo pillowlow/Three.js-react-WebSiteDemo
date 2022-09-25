@@ -1,19 +1,23 @@
 {
   "files": {
     "main.css": "/Three.js-react-WebSiteDemo/static/css/main.4349dfad.css",
-    "main.js": "/Three.js-react-WebSiteDemo/static/js/main.489de25e.js",
+    "main.js": "/Three.js-react-WebSiteDemo/static/js/main.e3136932.js",
     "static/js/787.e75bf1ec.chunk.js": "/Three.js-react-WebSiteDemo/static/js/787.e75bf1ec.chunk.js",
     "static/media/MainSpaceStation.fbx": "/Three.js-react-WebSiteDemo/static/media/MainSpaceStation.1133f82b1f03abdd1d3a.fbx",
     "static/media/SpaceShipsClock.fbx": "/Three.js-react-WebSiteDemo/static/media/SpaceShipsClock.d95ed93ae0f0fdff7585.fbx",
     "static/media/SpaceShipsCuntClock.fbx": "/Three.js-react-WebSiteDemo/static/media/SpaceShipsCuntClock.a5f23a504cdd36ea4b0d.fbx",
+    "static/media/ConnectSign.fbx": "/Three.js-react-WebSiteDemo/static/media/ConnectSign.7f2cd529a27010fc34ef.fbx",
+    "static/media/AboutMeSign.fbx": "/Three.js-react-WebSiteDemo/static/media/AboutMeSign.3fa17e2439099a5ae43d.fbx",
+    "static/media/ProtfolioSign.fbx": "/Three.js-react-WebSiteDemo/static/media/ProtfolioSign.1b5eda4ff53d97bb12cc.fbx",
+    "static/media/ProjectSign.fbx": "/Three.js-react-WebSiteDemo/static/media/ProjectSign.d059a76b6c45b7b70ac8.fbx",
     "static/media/testMonkey.fbx": "/Three.js-react-WebSiteDemo/static/media/testMonkey.2eaf1df7ee4f249528f8.fbx",
     "index.html": "/Three.js-react-WebSiteDemo/index.html",
     "main.4349dfad.css.map": "/Three.js-react-WebSiteDemo/static/css/main.4349dfad.css.map",
-    "main.489de25e.js.map": "/Three.js-react-WebSiteDemo/static/js/main.489de25e.js.map",
+    "main.e3136932.js.map": "/Three.js-react-WebSiteDemo/static/js/main.e3136932.js.map",
     "787.e75bf1ec.chunk.js.map": "/Three.js-react-WebSiteDemo/static/js/787.e75bf1ec.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4349dfad.css",
-    "static/js/main.489de25e.js"
+    "static/js/main.e3136932.js"
   ]
 }
