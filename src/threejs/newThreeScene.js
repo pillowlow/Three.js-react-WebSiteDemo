@@ -76,11 +76,11 @@ class newThreeScene extends Component{
        // console.log(this.BloomComposer)
        this.BloomComposer.render();
 
-       const testCloud = this.scene.getObjectByName("testCloud")
+       const testCloud = this.scene.getObjectByName("shipsCuntClockWise")
 
        if(testCloud){
         
-        testCloud.rotation.y += 0.00314;
+        testCloud.rotation.y += 0.008;
        }
        
        const galaxy = this.scene.getObjectByName("galaxy")
@@ -89,8 +89,11 @@ class newThreeScene extends Component{
         galaxy.rotation.y += 0.00400;
        }
        
-
-       
+       const clockWiseShips = this.scene.getObjectByName("shipsClockWise")
+       if(clockWiseShips){
+        
+        clockWiseShips.rotation.y -= 0.01;
+       }
        
     }
 
@@ -271,9 +274,9 @@ class newThreeScene extends Component{
         */
         
         const GalaxyTexLoader = new THREE.TextureLoader();
-        const GalaxyTexPath = "./galaxy1.png" ;
        
         GalaxyTexLoader.load(
+            
             './static/textures/galaxy1.png',
             (tex) =>{
                 
@@ -301,7 +304,7 @@ class newThreeScene extends Component{
             },
             undefined,
             function (err){
-                console.log(err,"wrong");
+                console.log(err,"galaxy wrong");
             }
 
         )
@@ -317,8 +320,8 @@ class newThreeScene extends Component{
         const Loader3 = new FBXLoader()
         const Loader4 = new FBXLoader()
         const loadPath = require('../models/testMonkey.fbx'); 
-        const loadPath2 = require('../models/dounutTest.fbx');
-        const loadPath3 = require('../models/testBackGroundParts.fbx');
+        const loadPath2 = require('../models/SpaceShipsClock.fbx');
+        const loadPath3 = require('../models/SpaceShipsCuntClock.fbx');
         const loadPath4 = require('../models/MainSpaceStation.fbx');
         
         /*
@@ -351,11 +354,23 @@ class newThreeScene extends Component{
             }
         )*/
         
+        Loader2.load(
+            loadPath2,
+            (object) =>{
+                this.scene.add(object)
+                object.name = "shipsClockWise"
+                
+                
+            }
+            
+        )
+
+
         Loader3.load(
             loadPath3,
             (object) =>{
                 this.scene.add(object)
-                object.name = "testCloud"
+                object.name = "shipsCuntClockWise"
                 
                 
             }
