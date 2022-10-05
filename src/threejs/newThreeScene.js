@@ -12,6 +12,39 @@ import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader"
 
 class newThreeScene extends Component{
     
+    constructor(props){
+
+        
+
+            // const pageState = { // enum 
+            //     MAINPAGE, // About Me
+            //     CONTECTME,
+            //     PROJECTS,
+            //     PROFOLIO, 
+                
+
+            // };
+            // const windowState = {
+            //     Mobile,
+            //     PC,
+            // };
+
+            super(props);
+            // this.state = {
+
+            //     pageState : pageState,
+            //     windowState : windowState,
+                
+
+
+
+
+            // }
+            
+
+    }
+
+
 
     postProcessing = () =>{
         
@@ -20,7 +53,7 @@ class newThreeScene extends Component{
             new THREE.Vector2(window.innerWidth,window.innerHeight),
             1.5,
             0.4,
-            0.85
+            0.85,
 
         );
         this.BloomPass.threshold = 0;
@@ -172,13 +205,28 @@ class newThreeScene extends Component{
         }
         else{
             for ( var i = 0; i < intersects.length; i++ ) {
+                /*
+                    intersects[i].object.name:
+                    "Project": 專案成果
+                    "Cube": 關於我
+                    "Profolio": 案件作品
+                    "Cube003": 聯繫我
+                */
                 
                 if(intersects[ i ].object.material !== undefined){
+                    // console.log(intersects[i].object.name)
+                    if (intersects[i].object.name === "Project" || intersects[i].object.name === "Cube" || intersects[i].object.name === "Profolio" || intersects[i].object.name === "Cube003") {
+                        this.props.modalOpen(intersects[i].object.name, 'RayCast')
+                    }
                     intersects[ i ].object.material.color.set( 0xff0000 );
                     intersects[ i ].object.material.emissive.set(0xff0000);
                     break;
                 }
                 
+                
+
+
+
                 /*
                     An intersection has the following properties :
                         - object : intersected object (THREE.Mesh)

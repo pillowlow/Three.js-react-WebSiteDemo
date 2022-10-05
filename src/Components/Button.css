@@ -1,14 +1,43 @@
-.Buttom {
-    position: absolute;
-    opacity: 0.5;
-    top: 0;
-    left: 0;
-    color: #61dafb;
-    background-color: aqua;
-    stop-color: #61dafb;
-    stroke-width: 20px;
-    z-index: 1;
-    width: 200px;
-    height: 100px;
+/* https://ithelp.ithome.com.tw/articles/10203671 */
+
+.Header {
+  width: 100%;
+  display: flex;
+  /* 水平置中 */
+  justify-content: center;    
+  /* 垂直置中 */
+  align-items: center;
+  position: absolute;    
+}
+
+.Button {
+  /* position: fixed; */
+  opacity: 0.5;
+  /* top: 0;
+    left: 0; */
+  color: #61dafb;
+  background-color: aqua;
+  stop-color: #61dafb;
+  stroke-width: 20px;
+  float: left;
+  margin: 5px;
+  padding: 20px;
+  font-size: 24px;
+  /* z-index: 1; */
+  width: 60px;
+  height: 30px;
+}
+
+@media screen and (min-width:500px) {
+  .Button {
+    width: 15%;
+    background-color: green;
   }
-  
+}
+
+@media screen and (min-width:1000px) {
+  .Button {
+    width: 100px;
+    background-color: blue;
+  }
+}
